@@ -1,4 +1,4 @@
-import { IApi, IBodyGet, IPostResponse, IBodyPost } from "../../types";
+import { IApi, TBodyGet, TPostResponse, TBodyPost } from "../../types";
 
 export class Connection {
     protected api: IApi
@@ -8,12 +8,12 @@ export class Connection {
     }
 
     async get(uri: string = '/product/') {
-        const result = await this.api.get<IBodyGet>(uri);
+        const result = await this.api.get<TBodyGet>(uri);
         return result;
     }
 
-    async post(uri: string = '/order/', data: IBodyPost) {
-        const result = await this.api.post<IPostResponse>(uri, data);
+    async post(data: TBodyPost, uri: string = '/order/') {
+        const result = await this.api.post<TPostResponse>(uri, data);
         return result;
     }
 }

@@ -8,7 +8,9 @@ export class Basket {
     }
 
     addProduct(product: IProduct): void {
-        this.chosenProducts.push(product);
+        if (!this.isProductInCart(product.id)) {
+            this.chosenProducts.push(product);
+        }
     }
 
     removeProduct(product: IProduct): void {

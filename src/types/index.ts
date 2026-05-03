@@ -5,25 +5,6 @@ export interface IApi {
     post<T extends object>(uri: string, data: object, method?: ApiPostMethods): Promise<T>;
 }
 
-export interface IBodyPost {
-  payment: Exclude<TPayment, "">;
-  email: string;
-  phone: string;
-  address: string;
-  total: number;
-  items: string[];
-}
-
-export interface IPostResponse {
-  id: string;
-  total: number;
-}
-
-export interface IBodyGet {
-  total: number;
-  items: IProduct[];
-}
-
 export interface IProduct {
   id: string;
   description: string;
@@ -40,4 +21,20 @@ export interface IBuyer {
   email: string;
   phone: string;
   address: string;
+}
+
+export type TBodyPost = IBuyer & {
+  payment: Exclude<TPayment, "">;
+  total: number;
+  items: string[];
+}
+
+export type TPostResponse = {
+  id: string;
+  total: number;
+}
+
+export type TBodyGet = {
+  total: number;
+  items: IProduct[];
 }
