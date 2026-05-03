@@ -4,3 +4,40 @@ export interface IApi {
     get<T extends object>(uri: string): Promise<T>;
     post<T extends object>(uri: string, data: object, method?: ApiPostMethods): Promise<T>;
 }
+
+export interface IBodyPost {
+  payment: Exclude<TPayment, "">;
+  email: string;
+  phone: string;
+  address: string;
+  total: number;
+  items: string[];
+}
+
+export interface IPostResponse {
+  id: string;
+  total: number;
+}
+
+export interface IBodyGet {
+  total: number;
+  items: IProduct[];
+}
+
+export interface IProduct {
+  id: string;
+  description: string;
+  image: string;
+  title: string;
+  category: string;
+  price: number | null;
+}
+
+export type TPayment = "card" | "cash" | "";
+
+export interface IBuyer {
+  payment: TPayment;
+  email: string;
+  phone: string;
+  address: string;
+}
