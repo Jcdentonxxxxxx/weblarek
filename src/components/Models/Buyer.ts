@@ -1,4 +1,4 @@
-import { IBuyer, TPayment } from '../../types';
+import { IBuyer, TPayment, TBuyerErrors } from '../../types';
 
 export class Buyer {
     protected payment: TPayment = '';
@@ -6,16 +6,18 @@ export class Buyer {
     protected phone: string = '';
     protected email: string = '';
 
-    setProperties(properties: IBuyer): void {
-        try {
-            Object.keys(properties).forEach((item) => {
-                if (!(item in this)) {
-                    throw new Error(`Передано недопустимое свойство: ${item}`);
-                }
-            });
-            Object.assign(this, properties);
-        } catch (error) {
-            console.log(error);
+    setProperties(properties: Partial<IBuyer>): void {
+        if (properties.payment !== undefined) {
+            this.payment = properties.payment;
+        }
+        if (properties.address !== undefined) {
+            this.address = properties.address;
+        }
+        if (properties.phone !== undefined) {
+            this.phone = properties.phone;
+        }
+        if (properties.email !== undefined) {
+            this.email = properties.email;
         }
     }
 
@@ -38,24 +40,19 @@ export class Buyer {
         Object.assign(this, defaultProperties);
     }
 
-    validationProperties(): object {
-        let result: {
-            payment?: string;
-            address?: string;
-            phone?: string;
-            email?: string;
-        } = {};
+    validationProperties(): TBuyerErrors {
+        let result: TBuyerErrors = {};
 
-        if (!this.payment) {
+        if (!this.payment.trim()) {
             result.payment = 'Не выбран тип оплаты';
         }
-        if (!this.address) {
+        if (!this.address.trim()) {
             result.address = 'Не указан адрес';
         }
-        if (!this.phone) {
+        if (!this.phone.trim()) {
             result.phone = 'Не указан телефон';
         }
-        if (!this.email) {
+        if (!this.email.trim()) {
             result.email = 'Укажите емэйл';
         }
 

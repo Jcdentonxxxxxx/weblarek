@@ -8,12 +8,10 @@ export class Connection {
     }
 
     async get(uri: string = '/product/') {
-        const result = await this.api.get<TBodyGet>(uri);
-        return result;
+        return await this.api.get<TBodyGet>(uri);
     }
 
     async post(data: TBodyPost, uri: string = '/order/') {
-        const result = await this.api.post<TPostResponse>(uri, data);
-        return result;
+        return await this.api.post<TPostResponse>(uri, data);
     }
 }

@@ -41,7 +41,7 @@ basketModel.addProduct(apiProducts.items[2]);
 basketModel.addProduct(apiProducts.items[2]);
 console.log('Массив товаров из корзины: ', basketModel.getChosenProducts());
 
-basketModel.removeProduct(apiProducts.items[1]);
+basketModel.removeProduct(apiProducts.items[1].id);
 console.log(
     'Массив товаров из корзины после удаления одного товара: ',
     basketModel.getChosenProducts()
@@ -71,6 +71,10 @@ buyerModel.setProperties({
     email: 'emailtest',
     phone: '',
     payment: 'card'
+});
+buyerModel.setProperties({
+    address: 'onlySaveAddress and phone',
+    phone: '  '
 });
 console.log('Данные покупателя', buyerModel.getProperties());
 

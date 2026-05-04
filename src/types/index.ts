@@ -27,6 +27,8 @@ export interface IBuyer {
     address: string;
 }
 
+export type TBuyerErrors = Partial<Record<keyof IBuyer, string>>;
+
 export type TBodyPost = IBuyer & {
     payment: Exclude<TPayment, ''>;
     total: number;

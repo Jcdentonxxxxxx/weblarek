@@ -13,9 +13,9 @@ export class Basket {
         }
     }
 
-    removeProduct(product: IProduct): void {
+    removeProduct(id: string): void {
         this.chosenProducts = this.chosenProducts.filter((item) => {
-            return item.id !== product.id;
+            return item.id !== id;
         });
     }
 
@@ -25,8 +25,7 @@ export class Basket {
 
     getTotalPrice(): number {
         return this.chosenProducts.reduce((sum, product) => {
-            const price = product.price ?? 0;
-            return sum + price;
+            return sum + (product.price ?? 0);
         }, 0);
     }
 
@@ -35,8 +34,6 @@ export class Basket {
     }
 
     isProductInCart(id: string): boolean {
-        return !!this.chosenProducts.find((product) => {
-            return product.id === id;
-        });
+        return this.chosenProducts.some(item => item.id === id);
     }
 }

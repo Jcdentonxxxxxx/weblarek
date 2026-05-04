@@ -13,10 +13,9 @@ export class Products {
     }
 
     getProduct(id: string): IProduct | undefined {
-        let result = this.allProducts.find((item) => {
+        return this.allProducts.find((item) => {
             return item.id === id;
         });
-        return result;
     }
 
     saveChosenProduct(product: IProduct): void {
