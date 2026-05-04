@@ -1,9 +1,9 @@
-import { IProduct } from "../../types";
+import { IProduct } from '../../types';
 
 export class Basket {
     protected chosenProducts: IProduct[] = [];
 
-    getChosenProducts():IProduct[] {
+    getChosenProducts(): IProduct[] {
         return this.chosenProducts;
     }
 
@@ -15,7 +15,7 @@ export class Basket {
 
     removeProduct(product: IProduct): void {
         this.chosenProducts = this.chosenProducts.filter((item) => {
-            return item.id !== product.id
+            return item.id !== product.id;
         });
     }
 
@@ -37,6 +37,6 @@ export class Basket {
     isProductInCart(id: string): boolean {
         return !!this.chosenProducts.find((product) => {
             return product.id === id;
-        })
+        });
     }
 }

@@ -1,7 +1,7 @@
-import { IApi, TBodyGet, TPostResponse, TBodyPost } from "../../types";
+import { IApi, TBodyGet, TPostResponse, TBodyPost } from '../../types';
 
 export class Connection {
-    protected api: IApi
+    protected api: IApi;
 
     constructor(api: IApi) {
         this.api = api;
